@@ -33,7 +33,13 @@ defmodule Aoc2024.Day01.Solution do
   end
 
   def similarity({l, r}) do
-    Enum.sum(Enum.map(l, fn x -> x * Enum.count(r, fn y -> y == x end) end))
+    l
+    |> Enum.map(&count_occurrences(&1, r))
+    |> Enum.sum()
+  end
+
+  defp count_occurrences(element, list) do
+    element * Enum.count(list, fn x -> x == element end)
   end
 
   def calculate([], [], sum), do: sum
