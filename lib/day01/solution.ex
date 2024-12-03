@@ -20,10 +20,20 @@ defmodule Aoc2024.Day01.Solution do
     |> run()
   end
 
+  def solve_part2() do
+    load_input()
+    |> build_lists()
+    |> similarity()
+  end
+
   def run({l, r}) do
     l = Enum.sort(l)
     r = Enum.sort(r)
     calculate(l, r, 0)
+  end
+
+  def similarity({l, r}) do
+    Enum.sum(Enum.map(l, fn x -> x * Enum.count(r, fn y -> y == x end) end))
   end
 
   def calculate([], [], sum), do: sum
