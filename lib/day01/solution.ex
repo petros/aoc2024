@@ -1,4 +1,10 @@
 defmodule Aoc2024.Day01.Solution do
+  @doc """
+  # Examples
+
+      iex> Aoc2024.Day01.Solution.load_input() |> Enum.count()
+      1000
+  """
   def load_input() do
     path = "lib/day01/input.txt"
     {:ok, contents} = File.read(path)
@@ -26,12 +32,28 @@ defmodule Aoc2024.Day01.Solution do
     |> similarity()
   end
 
+  @doc """
+  # Examples
+
+      iex> l = [3, 4, 2, 1, 3, 3]
+      iex> r = [4, 3, 5, 3, 9, 3]
+      iex> Aoc2024.Day01.Solution.run({l, r})
+      11
+  """
   def run({l, r}) do
     l = Enum.sort(l)
     r = Enum.sort(r)
     calculate(l, r, 0)
   end
 
+  @doc """
+  # Examples
+
+      iex> l = [3, 4, 2, 1, 3, 3]
+      iex> r = [4, 3, 5, 3, 9, 3]
+      iex> Aoc2024.Day01.Solution.similarity({l, r})
+      31
+  """
   def similarity({l, r}) do
     l
     |> Enum.map(&count_occurrences(&1, r))
